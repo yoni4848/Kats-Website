@@ -707,15 +707,18 @@ body.nav-open {
     margin: 0 auto;
   }
 
-  /* ── Music section — match philanthropy layout on mobile ── */
+  /* ── Blog & Music sections — match philanthropy layout on mobile ── */
+  #blog .section-header,
   #music .section-header {
     text-align: left;
   }
 
+  #blog .section-header .divider-short,
   #music .section-header .divider-short {
     margin-left: 0;
   }
 
+  #blog .section-header .lead,
   #music .section-header .lead {
     padding: 0;
   }
