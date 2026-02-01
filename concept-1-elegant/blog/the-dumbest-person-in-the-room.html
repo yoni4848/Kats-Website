@@ -29,8 +29,9 @@
       padding-bottom: var(--space-2xl);
     }
     .blog-post-header {
-      text-align: center;
-      margin-bottom: var(--space-xl);
+      text-align: left;
+      max-width: 660px;
+      margin: 0 auto var(--space-lg);
     }
     .blog-post-date {
       font-size: var(--text-xs);
@@ -38,11 +39,11 @@
       color: var(--color-accent);
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      margin-bottom: var(--space-sm);
+      margin-top: var(--space-sm);
     }
     .blog-post-title {
       font-size: var(--text-4xl);
-      margin-bottom: var(--space-md);
+      margin-bottom: 0;
       line-height: 1.2;
     }
     .blog-post-content {
@@ -52,13 +53,13 @@
     .blog-post-content p {
       font-size: var(--text-lg);
       line-height: 1.9;
-      margin-bottom: var(--space-md);
+      margin-bottom: 1rem;
       color: var(--color-text);
     }
     .blog-post-content h2 {
       font-size: var(--text-2xl);
-      margin-top: var(--space-xl);
-      margin-bottom: var(--space-md);
+      margin-top: var(--space-lg);
+      margin-bottom: var(--space-sm);
     }
     .blog-back-link {
       display: inline-flex;
@@ -85,11 +86,14 @@
     }
     .blog-illustration {
       max-width: 520px;
-      margin: 0 auto var(--space-lg);
+      margin: 0 auto var(--space-md);
+      border-radius: var(--radius-md);
+      overflow: hidden;
     }
     .blog-illustration img {
       width: 100%;
       height: auto;
+      filter: sepia(0.08);
     }
     .blog-nav {
       display: flex;
@@ -237,8 +241,8 @@
           <div class="blog-illustration">
             <img src="../../img/dumb-in-a-room-illustration.png" alt="Illustration of people sharing knowledge in a room">
           </div>
-          <p class="blog-post-date">October 7, 2024</p>
           <h1 class="blog-post-title">The Joy of Being the Dumbest Person in the Room</h1>
+          <p class="blog-post-date">October 7, 2024</p>
         </header>
 
         <div class="blog-post-content">
