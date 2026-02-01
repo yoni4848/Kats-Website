@@ -285,25 +285,54 @@
           <p class="lead">Please feel free to drop me a line and share your thoughts, as I'm always happy to learn from new people.</p>
         </div>
 
-        <form class="contact-form fade-in" novalidate>
+        <form class="contact-form fade-in" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <p style="display:none;">
+            <label>Don't fill this out: <input name="bot-field"></label>
+          </p>
           <div class="form-group">
             <label class="form-label" for="name">Name <span class="required">*</span></label>
-            <input type="text" id="name" class="form-input" required placeholder="Your full name">
+            <input type="text" id="name" name="name" class="form-input" required placeholder="Your full name">
           </div>
           <div class="form-group">
             <label class="form-label" for="email">Email <span class="required">*</span></label>
-            <input type="email" id="email" class="form-input" required placeholder="you@example.com">
+            <input type="email" id="email" name="email" class="form-input" required placeholder="you@example.com">
           </div>
           <div class="form-group">
             <label class="form-label" for="subject">Subject</label>
-            <input type="text" id="subject" class="form-input" placeholder="What is this regarding?">
+            <input type="text" id="subject" name="subject" class="form-input" placeholder="What is this regarding?">
           </div>
           <div class="form-group">
             <label class="form-label" for="message">Message <span class="required">*</span></label>
-            <textarea id="message" class="form-textarea" required placeholder="Your message..."></textarea>
+            <textarea id="message" name="message" class="form-textarea" required placeholder="Your message..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send Message</button>
+          <p class="form-success" style="display:none; margin-top: var(--space-md); color: var(--color-accent); font-weight: 500;">Thank you! Your message has been sent.</p>
         </form>
+        <script>
+          (function() {
+            var form = document.querySelector('.contact-form');
+            var successMsg = form.querySelector('.form-success');
+            form.addEventListener('submit', function(e) {
+              e.preventDefault();
+              if (!form.checkValidity()) { form.reportValidity(); return; }
+              fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
+              }).then(function(res) {
+                if (res.ok) {
+                  form.reset();
+                  successMsg.style.display = 'block';
+                  setTimeout(function() { successMsg.style.display = 'none'; }, 5000);
+                } else {
+                  alert('Something went wrong. Please try again.');
+                }
+              }).catch(function() {
+                alert('Something went wrong. Please try again.');
+              });
+            });
+          })();
+        </script>
       </div>
     </section>
   </main>
