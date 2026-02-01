@@ -402,7 +402,8 @@ section {
 }
 
 .blog-card-image {
-  height: 180px;
+  aspect-ratio: 16 / 10;
+  height: auto;
   background-color: var(--color-bg-muted);
   display: flex;
   align-items: center;
@@ -706,8 +707,9 @@ body.nav-open {
     margin: 0 auto;
   }
 
-  .blog-card-image {
-    height: 160px;
+  /* ── Music section — left-align on mobile ── */
+  #music .section-header {
+    text-align: left;
   }
 
   /* ── Quote ── */
