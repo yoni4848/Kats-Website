@@ -309,29 +309,39 @@
           <p class="form-success" style="display:none; margin-top: var(--space-md); color: var(--color-accent); font-weight: 500;">Thank you! Your message has been sent.</p>
         </form>
         <script>
-          (function() {
+          document.addEventListener('DOMContentLoaded', function() {
             var form = document.querySelector('.contact-form');
             var successMsg = form.querySelector('.form-success');
+            var submitBtn = form.querySelector('button[type="submit"]');
             form.addEventListener('submit', function(e) {
               e.preventDefault();
               if (!form.checkValidity()) { form.reportValidity(); return; }
-              fetch('/', {
+              submitBtn.disabled = true;
+              submitBtn.textContent = 'Sending...';
+              var formData = new FormData(form);
+              fetch(form.action || window.location.pathname, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(new FormData(form)).toString()
+                body: new URLSearchParams(formData).toString()
               }).then(function(res) {
                 if (res.ok) {
                   form.reset();
                   successMsg.style.display = 'block';
+                  submitBtn.textContent = 'Send Message';
+                  submitBtn.disabled = false;
                   setTimeout(function() { successMsg.style.display = 'none'; }, 5000);
                 } else {
+                  submitBtn.textContent = 'Send Message';
+                  submitBtn.disabled = false;
                   alert('Something went wrong. Please try again.');
                 }
               }).catch(function() {
+                submitBtn.textContent = 'Send Message';
+                submitBtn.disabled = false;
                 alert('Something went wrong. Please try again.');
               });
             });
-          })();
+          });
         </script>
       </div>
     </section>
