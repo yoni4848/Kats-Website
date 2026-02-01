@@ -707,8 +707,8 @@ body.nav-open {
     margin: 0 auto;
   }
 
-  /* ── Music section — left-align on mobile ── */
-  #music .section-header {
+  /* ── Music section — left-align body text on mobile, keep heading centered ── */
+  #music .section-header .lead {
     text-align: left;
   }
 
