@@ -718,7 +718,11 @@ body.nav-open {
     margin-left: 0;
   }
 
-  #blog .section-header .lead,
+  #blog .section-header .lead {
+    text-align: center;
+    padding: 0;
+  }
+
   #music .section-header .lead {
     padding: 0;
   }
