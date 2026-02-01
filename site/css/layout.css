@@ -716,6 +716,10 @@ body.nav-open {
     margin-left: 0;
   }
 
+  #music .section-header .lead {
+    padding: 0;
+  }
+
   /* ── Quote ── */
   .quote {
     font-size: var(--text-2xl);
