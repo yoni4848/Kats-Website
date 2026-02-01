@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>If... | K. TingTing Gray</title>
+  <meta name="description" content="A poem by K. TingTing Gray">
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+  <!-- Google Fonts (non-blocking) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../shared/css/reset.css">
+  <link rel="stylesheet" href="../../shared/css/utilities.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <noscript><style>.fade-in { opacity: 1; transform: none; }</style></noscript>
+  <style>
+    .blog-post {
+      padding-top: calc(var(--header-height) + var(--space-xl));
+      padding-bottom: var(--space-2xl);
+    }
+    .blog-post-header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+    .blog-post-date {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: var(--space-sm);
+    }
+    .blog-post-title {
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-md);
+      line-height: 1.2;
+    }
+    .blog-post-content {
+      max-width: 660px;
+      margin: 0 auto;
+    }
+    .blog-post-content p {
+      font-size: var(--text-lg);
+      line-height: 2.0;
+      margin-bottom: var(--space-md);
+      color: var(--color-text);
+      font-style: italic;
+    }
+    .blog-post-content h2 {
+      font-size: var(--text-2xl);
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-md);
+    }
+    .blog-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--color-accent);
+      text-decoration: none;
+      font-size: var(--text-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: var(--space-lg);
+      transition: color var(--transition-fast);
+    }
+    .blog-back-link:hover {
+      color: var(--color-accent-dark);
+    }
+    .blog-back-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+    .blog-illustration {
+      max-width: 520px;
+      margin: 0 auto var(--space-lg);
+    }
+    .blog-illustration img {
+      width: 100%;
+      height: auto;
+    }
+    .blog-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: var(--space-md);
+      margin-top: var(--space-2xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--color-border);
+      max-width: 660px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .blog-nav-link {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xs);
+      text-decoration: none;
+      max-width: 45%;
+      transition: color var(--transition-fast);
+    }
+    .blog-nav-link:hover {
+      color: var(--color-accent);
+    }
+    .blog-nav-link span:first-child {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-text-tertiary);
+    }
+    .blog-nav-link:hover span:first-child {
+      color: var(--color-accent);
+    }
+    .blog-nav-link span:last-child {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+    .blog-nav-link:hover span:last-child {
+      color: var(--color-accent);
+    }
+    .blog-nav-link--next {
+      text-align: right;
+      margin-left: auto;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .blog-post {
+        padding-top: calc(var(--header-height) + var(--space-lg));
+        padding-bottom: var(--space-xl);
+      }
+      .blog-post-title {
+        font-size: var(--text-2xl);
+        line-height: 1.3;
+      }
+      .blog-post-content p {
+        font-size: var(--text-base);
+        line-height: 1.8;
+      }
+      .blog-post-content h2 {
+        font-size: var(--text-xl);
+        margin-top: var(--space-lg);
+      }
+      .blog-illustration {
+        max-width: 100%;
+      }
+      .blog-nav {
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+      .blog-nav {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: 1fr;
+      }
+      .blog-nav-link {
+        max-width: 100%;
+        padding: var(--space-md);
+        border: 1px solid var(--color-border-light);
+        border-radius: var(--radius-md);
+        justify-content: center;
+        box-sizing: border-box;
+      }
+      .blog-nav-link--next {
+        text-align: left;
+        margin-left: 0;
+      }
+      .blog-back-link {
+        margin-bottom: var(--space-md);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="../index.html" class="logo">
+          <img src="../../shared/img/original/KatrineGray-BrandKit-01-logo-text-removebg-preview.png" alt="K. TingTing Gray">
+        </a>
+
+        <nav class="nav-desktop">
+          <a href="../index.html#about" class="nav-link">About</a>
+          <a href="../index.html#book" class="nav-link">Book</a>
+          <a href="../index.html#blog" class="nav-link">Blog</a>
+          <a href="../index.html#philanthropy" class="nav-link">Philanthropy</a>
+          <a href="../index.html#music" class="nav-link">Music</a>
+          <a href="../index.html#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-links">
+      <a href="../index.html#about" class="nav-link">About</a>
+      <a href="../index.html#book" class="nav-link">Book</a>
+      <a href="../index.html#blog" class="nav-link">Blog</a>
+      <a href="../index.html#philanthropy" class="nav-link">Philanthropy</a>
+      <a href="../index.html#music" class="nav-link">Music</a>
+      <a href="../index.html#contact" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <article class="blog-post">
+      <div class="container">
+        <a href="../index.html#blog" class="blog-back-link">
+          <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back to Blog
+        </a>
+
+        <header class="blog-post-header">
+          <p class="blog-post-date">September 17, 2024</p>
+          <h1 class="blog-post-title">If...</h1>
+        </header>
+
+        <div class="blog-post-content">
+          <p>If I knew you as I am now<br>
+I'd find you under the staircase<br>
+And fly you away on the seat of my sturdy pants<br>
+All the while whisper to<br>
+You, the one who came feet first from gloom but of light;<br>
+You, the one who inspired worshipful hatred and<br>
+mutely defied loneliness among kin<br>
+to hold on because it stops hurting when the pain is gone</p>
+
+          <p>Yet since I know you as I am now<br>
+I'd find you under the staircase<br>
+though only to share the embrace<br>
+of the vast beyond of my awe of<br>
+You, the one who believed in the unimagined<br>
+You, the one who guarded the truth in silence and<br>
+fashioned solace out of oblivion</p>
+
+          <p>Since you knew me as I was then<br>
+You did find me under the staircase<br>
+And tell me to hold on for the next breath<br>
+All the while humming to yourself<br>
+The one who took another breath<br>
+The one who roamed the rain under and<br>
+Made a world under the sunny dome of your shield.</p>
+
+          <p>If I were to tell you the truth,<br>
+I'd have nothing left to say to<br>
+You, the one who'd always known without knowing<br>
+You, the one who lived as urchin divine and<br>
+Showed me waif goodness and how to mother,<br>
+Or, maybe, if I could come to you under the staircase,<br>
+perhaps all I'd say is: "be".</p>
+        </div>
+
+        <nav class="blog-nav">
+          <a href="the-power-of-shamelessness.html" class="blog-nav-link">
+            <span>&larr; Previous</span>
+            <span>The Power of Shamelessness</span>
+          </a>
+          <a href="the-beauty-of-thinking-small.html" class="blog-nav-link blog-nav-link--next">
+            <span>Next &rarr;</span>
+            <span>The Beauty of Thinking Small</span>
+          </a>
+        </nav>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="../../shared/img/original/KatrineGray-BrandKit-01-logo-text-removebg-preview.png" alt="K. TingTing Gray" class="footer-logo">
+          <p>Author | Cellist | Dancer | Educator | Impresario | Philanthropist</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Navigate</h4>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#book">Book</a>
+          <a href="../index.html#blog">Blog</a>
+          <a href="../index.html#philanthropy">Philanthropy</a>
+          <a href="../index.html#contact">Contact</a>
+        </div>
+        <div class="footer-contact">
+          <h4>Connect</h4>
+          <a href="mailto:kat@ktingtinggray.com">kat@ktingtinggray.com</a>
+          <a href="https://www.facebook.com/profile.php?id=61554885916743" target="_blank">Facebook</a>
+          <a href="https://www.linkedin.com/in/katrine-gray-263823281/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2025 K. TingTing Gray. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
+  <script src="../../shared/js/navigation.js"></script>
+  <script src="../js/animations.js"></script>
+</body>
+</html>

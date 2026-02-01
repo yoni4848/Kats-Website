@@ -1,0 +1,75 @@
+/* K. TingTing Gray — Design Tokens
+   Palette: Concert hall warmth — aged ivory, warm brass, deep charcoal.
+   Not cold minimalism. Curated gallery warmth. */
+
+:root {
+  /* ── Surfaces ── */
+  --color-bg:            #FAF8F5;   /* warm ivory — like aged paper */
+  --color-bg-secondary:  #FFFFFF;   /* clean white for cards */
+  --color-bg-muted:      #F5F2EE;   /* warm muted — quote blocks, alt sections */
+
+  /* ── Text ── */
+  --color-text:          #2C2420;   /* warm near-black — like dark walnut */
+  --color-text-secondary:#6B6058;   /* warm gray — darkened for WCAG AA */
+  --color-text-tertiary: #8A7E74;   /* warm mid-gray — was too light */
+
+  /* ── Accent ── */
+  --color-accent:        #9A7D45;   /* warm brass — darkened for contrast */
+  --color-accent-dark:   #7D6535;   /* darker brass for hover states */
+  --color-accent-light:  #D4C4A0;   /* light brass for subtle borders */
+
+  /* ── Structural ── */
+  --color-border:        #E8E3DC;   /* warm border — not cold gray */
+  --color-border-light:  #F0ECE6;   /* very subtle separation */
+  --color-charcoal:      #2C2420;   /* deep warm charcoal for footer */
+
+  /* ── Typography ── */
+  --font-heading: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+  --font-body:    'Manrope', 'Helvetica Neue', sans-serif;
+
+  /* ── Type Scale ── */
+  --text-xs:   0.75rem;    /* 12px — labels, dates */
+  --text-sm:   0.875rem;   /* 14px — captions, small text */
+  --text-base: 1rem;       /* 16px — body */
+  --text-lg:   1.125rem;   /* 18px — lead text */
+  --text-xl:   1.25rem;    /* 20px — card headings */
+  --text-2xl:  1.5rem;     /* 24px — section subheadings */
+  --text-3xl:  2rem;       /* 32px — section headings */
+  --text-4xl:  2.75rem;    /* 44px — large headings */
+  --text-5xl:  3.5rem;     /* 56px — hero */
+  --text-6xl:  4.25rem;    /* 68px — hero large */
+
+  /* ── Spacing — 4px base unit ── */
+  --space-2xs: 0.25rem;    /* 4px */
+  --space-xs:  0.5rem;     /* 8px */
+  --space-sm:  1rem;       /* 16px */
+  --space-md:  1.5rem;     /* 24px — the gap between 1rem and 2rem that was missing */
+  --space-lg:  2.5rem;     /* 40px */
+  --space-xl:  4rem;       /* 64px */
+  --space-2xl: 6rem;       /* 96px */
+  --space-3xl: 8rem;       /* 128px */
+
+  /* ── Border Radius ── */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  /* ── Shadows — warm tint ── */
+  --shadow-sm:  0 1px 3px rgba(44, 36, 32, 0.04);
+  --shadow-md:  0 4px 16px rgba(44, 36, 32, 0.06);
+  --shadow-lg:  0 8px 32px rgba(44, 36, 32, 0.08);
+  --shadow-xl:  0 16px 48px rgba(44, 36, 32, 0.10);
+
+  /* ── Transitions — varied by purpose ── */
+  --transition-fast:  0.15s ease;       /* hovers, color changes */
+  --transition-base:  0.3s ease;        /* layout shifts, transforms */
+  --transition-slow:  0.5s ease;        /* reveals, entrances */
+  --transition-enter: 0.6s cubic-bezier(0.16, 1, 0.3, 1);  /* scroll-in animations */
+
+  /* ── Container ── */
+  --container-max: 1140px;
+  --container-padding: 2rem;
+
+  /* ── Header height (for offset calculations) ── */
+  --header-height: 72px;
+}

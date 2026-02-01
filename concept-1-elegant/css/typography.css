@@ -1,0 +1,106 @@
+/* K. TingTing Gray — Typography
+   Heading: Space Grotesk — geometric confidence, modern warmth.
+   Body: Manrope — clean geometric legibility, never cold. */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: var(--text-2xl);
+  font-weight: 500;
+}
+
+h4 {
+  font-size: var(--text-xl);
+  font-weight: 500;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+.lead {
+  font-size: var(--text-lg);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.tagline {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* Navigation type */
+.nav-link {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Links */
+a {
+  color: var(--color-accent);
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent-dark);
+}
+
+/* Label/caption style — used for dates, categories */
+.label {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  h1 {
+    font-size: var(--text-4xl);
+  }
+
+  h2 {
+    font-size: var(--text-2xl);
+  }
+
+  h3 {
+    font-size: var(--text-xl);
+  }
+
+  .lead {
+    font-size: var(--text-base);
+  }
+}
