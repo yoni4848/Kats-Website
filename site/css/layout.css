@@ -707,9 +707,13 @@ body.nav-open {
     margin: 0 auto;
   }
 
-  /* ── Music section — left-align body text on mobile, keep heading centered ── */
-  #music .section-header .lead {
+  /* ── Music section — match philanthropy layout on mobile ── */
+  #music .section-header {
     text-align: left;
+  }
+
+  #music .section-header .divider-short {
+    margin-left: 0;
   }
 
   /* ── Quote ── */
