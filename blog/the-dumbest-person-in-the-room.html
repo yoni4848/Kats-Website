@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+(function() {
+  var t = localStorage.getItem('katTheme') || 'B';
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Joy of Being the Dumbest Person in the Room | K. TingTing Gray</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: #FAF8F4; color: #221C16; font-family: 'Space Grotesk', sans-serif; line-height: 1.7; }
+img { display: block; max-width: 100%; }
+a { text-decoration: none; }
+.nav { position: sticky; top: 0; z-index: 100; background: rgba(250,248,244,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid #E5DDD3; padding: 1rem 3rem; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo img { height: 32px; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: #7A6E64; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; transition: color 0.2s; }
+.nav-links a:hover { color: #8A6E3A; }
+.article-wrap { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+.back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: #8A6E3A; font-weight: 600; margin-bottom: 3rem; transition: color 0.2s; }
+.back-link:hover { color: #6A5228; }
+.back-link svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.article-header { margin-bottom: 3rem; }
+.article-illustration { margin-bottom: 2rem; overflow: hidden; }
+.article-illustration img { width: 100%; border: 1px solid #E5DDD3; }
+.article-date { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: #8A6E3A; font-weight: 600; display: block; margin-bottom: 1rem; }
+.article-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.1; color: #221C16; margin-bottom: 1rem; }
+.article-rule { width: 44px; height: 2px; background: #C4A872; }
+.article-body { margin-top: 2.5rem; }
+.article-body p { font-size: 1.05rem; line-height: 1.9; color: #3A2E24; margin-bottom: 1.5rem; }
+.article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; color: #221C16; margin: 2.5rem 0 1rem; }
+.article-body em { font-style: italic; color: #8A6E3A; }
+.post-nav { display: flex; justify-content: space-between; gap: 2rem; margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid #E5DDD3; }
+.post-nav-link { display: flex; flex-direction: column; gap: 0.4rem; max-width: 45%; }
+.post-nav-link span:first-child { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9A8E84; font-weight: 600; }
+.post-nav-link span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #221C16; line-height: 1.3; transition: color 0.2s; }
+.post-nav-link:hover span:last-child { color: #8A6E3A; }
+.post-nav-link--next { text-align: right; margin-left: auto; }
+.footer { background: #221C16; padding: 3rem; }
+.footer-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.5; }
+.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-links a { color: rgba(250,248,244,0.38); font-size: 0.78rem; transition: color 0.2s; }
+.footer-links a:hover { color: #C4A872; }
+.footer-copy { max-width: 720px; margin: 1.5rem auto 0; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; font-size: 0.72rem; color: rgba(250,248,244,0.22); text-align: center; }
+@media (max-width: 600px) {
+  .nav { padding: 1rem 1.25rem; } .nav-links { display: none; }
+  .article-wrap { padding: 2.5rem 1.25rem 4rem; }
+  .post-nav { flex-direction: column; }
+  .post-nav-link { max-width: 100%; }
+  .post-nav-link--next { text-align: left; margin-left: 0; }
+}
+
+<style id="blog-theme-styles">
+/* ── THEME DEFAULTS (Theme B — Ivory Editorial is the base) ── */
+:root {
+  --bg: #FAF8F4; --bg2: #F3EFE8; --border: #E5DDD3;
+  --text: #221C16; --text2: #7A6E64;
+  --accent: #8A6E3A; --accent-lt: #C4A872;
+  --heading-font: 'Playfair Display', serif;
+  --body-font: 'Lato', sans-serif;
+}
+body { background: var(--bg); color: var(--text); font-family: var(--body-font); }
+.nav { background: rgba(250,248,244,0.96); border-color: var(--border); }
+.nav-links a { color: var(--text2); }
+.nav-links a:hover { color: var(--accent); }
+.back-link { color: var(--accent); }
+.article-date { color: var(--accent); }
+.article-title { font-family: var(--heading-font); color: var(--text); }
+.article-rule { background: var(--accent-lt); }
+.article-body p { color: #3A2E24; }
+.article-body h2 { font-family: var(--heading-font); color: var(--text); }
+.article-body em { color: var(--accent); }
+.post-nav { border-color: var(--border); }
+.post-nav-link span:last-child { color: var(--text); }
+.post-nav-link:hover span:last-child { color: var(--accent); }
+.footer { background: #221C16; }
+.footer-links a:hover { color: var(--accent-lt); }
+
+/* ── THEME A — Noir Luxe ── */
+[data-theme="A"] { --bg:#110E0A; --bg2:#1A1510; --border:rgba(212,196,160,0.2); --text:#F5F0EA; --text2:rgba(245,240,234,0.55); --accent:#9A7D45; --accent-lt:#D4C4A0; --heading-font:'Cormorant Garamond',serif; --body-font:'Space Grotesk',sans-serif; }
+[data-theme="A"] body { background: var(--bg); color: var(--text); font-family: var(--body-font); }
+[data-theme="A"] .nav { background: rgba(17,14,10,0.96); border-color: var(--border); }
+[data-theme="A"] .nav-logo img { filter: brightness(0) invert(1); opacity: 0.85; }
+[data-theme="A"] .article-illustration img { border-color: var(--border); filter: sepia(15%) brightness(0.85); }
+[data-theme="A"] .article-body p { color: rgba(245,240,234,0.75); }
+[data-theme="A"] .post-nav-link span:first-child { color: rgba(245,240,234,0.4); }
+[data-theme="A"] .footer { background: #080604; border-top: 1px solid var(--border); }
+[data-theme="A"] .footer-logo img { filter: brightness(0) invert(1); opacity: 0.45; }
+
+/* ── THEME B — Ivory Editorial (default, already styled above) ── */
+[data-theme="B"] .nav-logo img { filter: none; }
+
+/* ── THEME C — Bold Typographic ── */
+[data-theme="C"] { --bg:#0A0A0A; --bg2:#111; --border:#2A2A2A; --text:#F0EDE8; --text2:rgba(240,237,232,0.5); --accent:#E8A830; --accent-lt:#F0C870; --heading-font:'Bebas Neue',sans-serif; --body-font:'Inter',sans-serif; }
+[data-theme="C"] body { background: var(--bg); color: var(--text); font-family: var(--body-font); }
+[data-theme="C"] .nav { background: rgba(10,10,10,0.96); border-color: var(--border); }
+[data-theme="C"] .nav-logo img { filter: brightness(0) invert(1); opacity: 0.8; }
+[data-theme="C"] .article-illustration img { border-color: var(--border); filter: grayscale(40%) brightness(0.8); }
+[data-theme="C"] .article-title { font-family: var(--heading-font); font-size: clamp(2.5rem,6vw,4rem); letter-spacing: 0.02em; line-height: 0.95; }
+[data-theme="C"] .article-body p { color: rgba(240,237,232,0.72); font-weight: 300; }
+[data-theme="C"] .article-body h2 { font-family: var(--heading-font); font-size: 2rem; letter-spacing: 0.03em; line-height: 1; }
+[data-theme="C"] .post-nav-link span:first-child { color: rgba(240,237,232,0.35); }
+[data-theme="C"] .footer { background: #050505; border-top: 1px solid var(--border); }
+[data-theme="C"] .footer-logo img { filter: brightness(0) invert(1); opacity: 0.4; }
+
+/* ── THEME D — Warm Salon ── */
+[data-theme="D"] { --bg:#F7F0E8; --bg2:#EEE4D6; --border:#DDD0BE; --text:#2A1F14; --text2:#7A6350; --accent:#C4683A; --accent-lt:#E8A880; --heading-font:'DM Serif Display',serif; --body-font:'DM Sans',sans-serif; }
+[data-theme="D"] body { background: var(--bg); color: var(--text); font-family: var(--body-font); }
+[data-theme="D"] .nav { background: rgba(247,240,232,0.96); border-color: var(--border); }
+[data-theme="D"] .article-body p { color: #3D2A1C; }
+[data-theme="D"] .post-nav-link span:first-child { color: #9A8070; }
+[data-theme="D"] .footer { background: #2A1F14; }
+[data-theme="D"] .footer-logo img { filter: brightness(0) invert(1); opacity: 0.5; }
+</style>
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../Design Options.html" class="nav-logo"><img src="../assets/logo.png" alt="K. TingTing Gray"></a>
+  <ul class="nav-links">
+    <li><a href="../Design Options.html#about">About</a></li>
+    <li><a href="../Design Options.html#book">Book</a></li>
+    <li><a href="../Design Options.html#blog">Blog</a></li>
+    <li><a href="../Design Options.html#philanthropy">Philanthropy</a></li>
+    <li><a href="../Design Options.html#music">Music</a></li>
+    <li><a href="../Design Options.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="article-wrap">
+  <a href="../Design Options.html#blog" class="back-link">
+    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Blog
+  </a>
+
+  <article>
+    <header class="article-header">
+      <div class="article-illustration">
+        <img src="../assets/blog-dumb.png" alt="Illustration of people sharing knowledge in a room">
+      </div>
+      <span class="article-date">October 7, 2024</span>
+      <h1 class="article-title">The Joy of Being the Dumbest Person in the Room</h1>
+      <div class="article-rule"></div>
+    </header>
+
+    <div class="article-body">
+      <p>Have you ever been in a room where everyone seems to know more than you?</p>
+      <p>I have, and I've learned to love it. While leading a workshop for high school students on the value of boredom, I found myself stumped by a slang term I didn't understand.</p>
+      <p>A young man in the front row rolled his eyes and muttered, "You must be the dumbest person in the room." I grinned and replied, "I <em>am</em> right now. Please tell me more about this."</p>
+      <p>In that moment, I realized how much I truly enjoy being the dumbest person in the room. Because it dawned on me that it was a gift. Now I've come to seek opportunities of being the "dumbest" person in the room, knowing it opens doors to growth, humility, and collaboration.</p>
+
+      <h2>The Freedom of Being the Dumbest Person in the Room</h2>
+      <p>When I'm seen as the smartest person in the room, there's pressure to have and give the answers. Confession: my younger self had made stuff up to keep my "smart" status. But since having accepted that I don't know everything, that pressure falls away.</p>
+      <p>Being the "dumbest" person in the room doesn't mean I'm inadequate. It means there's always more to learn. This openness allows me to be present, to listen, and to genuinely absorb new information.</p>
+
+      <h2>The Sense of Wonder and Awe</h2>
+      <p>When I'm not an expert, I'm filled with wonder and awe at the knowledge of others. It's like the moment before diving into the ocean wearing my SCUBA gear, I'm excited knowing there's so much more to discover.</p>
+      <p>During that workshop with the students, I learned more than just a new slang term. I gained insight into their world — what they care about, what makes them laugh, and how they see authority. Being the least knowledgeable person in the room gives me the gift of curiosity and amazement. At the end of the workshop, the young man said, "Ms. Gray, you're a badass." To which I blinked rapidly, asking: "What's a badass?" Everyone doubled over laughing.</p>
+
+      <h2>The Humility to Learn and Grow</h2>
+      <p>Humility is a powerful tool for growth. To truly learn, I have to admit that I don't know it all. When I embrace my role as the "dumbest" in the room, I can listen, absorb, and grow in ways I couldn't if I were always trying to be right.</p>
+      <p>In my work through KAVAH, I'm often surrounded by experts such as historians, educators, and artists — people who know far more about their fields than I do. Instead of feeling intimidated, I ask a question and sit back, feeling grateful knowing I'm learning from the best.</p>
+
+      <h2>The Space to Absorb New Information</h2>
+      <p>When I stopped worrying about being right or looking smart, I discovered extra mental space which allowed me to absorb new information.</p>
+      <p>This has been transformative in both my personal and professional life. When I approach conversations with an open mind and no ego, I retain and engage more deeply.</p>
+
+      <h2>Encouraging Others to Share</h2>
+      <p>Admitting that I don't know something invites others to share their knowledge. When people see that I'm genuinely interested in what they have to say, they feel valued and respected.</p>
+      <p>That young man at the workshop, who thought I was clueless, ended up teaching me something new. By admitting my ignorance, I created space for him to contribute, and we both walked away knowing more. Also, he liked my sneakers.</p>
+
+      <h2>Promoting Collaboration and Community</h2>
+      <p>Being the least knowledgeable person in the room encourages collaboration. It's no longer about individual knowledge or status. It's about working together to create something bigger than any one of us could on our own.</p>
+      <p>So the next time you find yourself in a room full of experts, resist the urge to pretend you know more than you do. Embrace your ignorance. Ask the questions others are afraid to ask. You might just learn something extraordinary.</p>
+    </div>
+
+    <nav class="post-nav">
+      <a href="the-surprising-value-of-boredom.html" class="post-nav-link">
+        <span>← Previous</span>
+        <span>The Surprising Value of Boredom</span>
+      </a>
+      <a href="the-power-of-shamelessness.html" class="post-nav-link post-nav-link--next">
+        <span>Next →</span>
+        <span>The Power of Shamelessness</span>
+      </a>
+    </nav>
+  </article>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="../assets/logo.png" alt="K. TingTing Gray"></div>
+    <div class="footer-links">
+      <a href="mailto:kat@ktingtinggray.com">kat@ktingtinggray.com</a>
+      <a href="https://www.facebook.com/profile.php?id=61554885916743" target="_blank">Facebook</a>
+      <a href="https://www.linkedin.com/in/katrine-gray-263823281/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+  <p class="footer-copy">&copy; 2025 K. TingTing Gray. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

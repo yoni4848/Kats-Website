@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K. TingTing Gray — Video Generation Prompts</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brass: #9A7D45;
+    --brass-light: #D4C4A0;
+    --charcoal: #2C2420;
+    --ivory: #FAF8F5;
+    --muted: #F5F2EE;
+    --text: #2C2420;
+    --text-2: #6B6058;
+    --border: #E8E3DC;
+  }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--ivory);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  header {
+    background: var(--charcoal);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    color: var(--brass-light);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  header p {
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .intro {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+  .intro h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--brass);
+  }
+  .intro p { color: var(--text-2); font-size: 0.95rem; }
+
+  .section-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+
+  .section-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--muted);
+  }
+
+  .section-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--charcoal);
+    color: var(--brass-light);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-card-header h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+  .section-card-header .vibe {
+    margin-left: auto;
+    font-size: 0.78rem;
+    color: var(--text-2);
+    font-style: italic;
+  }
+
+  .section-card-body {
+    padding: 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .prompt-block { }
+  .prompt-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    margin-bottom: 0.75rem;
+  }
+  .label-nb {
+    background: #FFF4E0;
+    color: #A0610A;
+    border: 1px solid #F0D8A0;
+  }
+  .label-sd {
+    background: #E8F0FF;
+    color: #2A4BA0;
+    border: 1px solid #C0D0F0;
+  }
+  .label-nb::before { content: "🖼"; }
+  .label-sd::before { content: "🎬"; }
+
+  .prompt-text {
+    font-family: 'Manrope', monospace;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--charcoal);
+    background: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    user-select: all;
+  }
+  .prompt-text:hover {
+    border-color: var(--brass);
+    background: #FDFAF6;
+  }
+
+  .copy-hint {
+    font-size: 0.75rem;
+    color: var(--text-2);
+    margin-top: 0.4rem;
+  }
+
+  .notes {
+    font-size: 0.85rem;
+    color: var(--text-2);
+    border-left: 3px solid var(--brass-light);
+    padding-left: 1rem;
+    line-height: 1.6;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  .specs-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .spec-pill {
+    font-size: 0.78rem;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    color: var(--text-2);
+  }
+  .spec-pill strong {
+    color: var(--charcoal);
+    font-weight: 600;
+  }
+
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-2);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>K. TingTing Gray — Video Background Prompts</h1>
+  <p>Generation guide for Nano Banana 2 (images) + Sundance 2 (video)</p>
+</header>
+
+<div class="container">
+
+  <div class="intro">
+    <h2>How to use this guide</h2>
+    <p>For each website section, generate an image first in <strong>Nano Banana 2</strong>, then feed that image into <strong>Sundance 2</strong> with the motion prompt to animate it. All videos should be exported at <strong>1920×1080</strong>, looping, muted. Aim for <strong>6–10 second loops</strong>. Once generated, attach them here and the redesign will be updated to use them.</p>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-header">
+      <div class="section-number">01</div>
+      <h3>Hero — Full Screen Opening</h3>
+      <span class="vibe">Ethereal · Commanding · Renaissance</span>
+    </div>
+    <div class="section-card-body">
+      <div class="specs-row">
+        <span class="spec-pill"><strong>Ratio:</strong> 16:9 landscape</span>
+        <span class="spec-pill"><strong>Duration:</strong> 8–10s loop</span>
+        <span class="spec-pill"><strong>Overlay:</strong> Dark 55%</span>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-nb">Nano Banana 2 — Image</div>
+        <div class="prompt-text">Cinematic wide-angle shot of a grand concert hall interior, warm amber stage light cutting through a haze of smoke, rich mahogany balconies receding into darkness, a single bright spotlight illuminating swirling dust particles in the air, baroque architecture with gold leaf details, deep shadow and warm light contrast, impressionist painting quality, no people, 8K, ultra-detailed, anamorphic lens flare, warm brass and charcoal palette</div>
+        <p class="copy-hint">Click text to select all → copy</p>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-sd">Sundance 2 — Motion</div>
+        <div class="prompt-text">Slow imperceptible drift of the smoke haze upward, dust particles floating and glittering in the spotlight beam, the ambient warm light gently pulsing as if breathing, extremely subtle camera push forward, cinematic grain, dreamlike and hypnotic, 24fps</div>
+      </div>
+      <p class="notes">This will sit behind Kat's name and tagline "Renaissance Woman." The grandeur of the concert hall signals her multi-disciplinary world immediately.</p>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-header">
+      <div class="section-number">02</div>
+      <h3>About — A Life of Many Passions</h3>
+      <span class="vibe">Layered · Artistic · Fluid</span>
+    </div>
+    <div class="section-card-body">
+      <div class="specs-row">
+        <span class="spec-pill"><strong>Ratio:</strong> 16:9</span>
+        <span class="spec-pill"><strong>Duration:</strong> 8s loop</span>
+        <span class="spec-pill"><strong>Overlay:</strong> Dark 60%</span>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-nb">Nano Banana 2 — Image</div>
+        <div class="prompt-text">Abstract macro photograph of black ink spreading and blooming through warm amber-tinted water, intricate fractal tendrils forming, rich contrast between deep ink black and warm golden water, translucent layers of ink creating depth, artisanal and contemplative, no text, no people, studio lighting from below, photographed from above, ultra high resolution, fine art quality</div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-sd">Sundance 2 — Motion</div>
+        <div class="prompt-text">Ink slowly blooming and expanding outward in organic shapes, tendrils of black ink diffusing through warm golden water in real time, hypnotically slow, the whole frame gradually darkening as ink spreads, peaceful and meditative rhythm, perfect loop</div>
+      </div>
+      <p class="notes">Represents the many facets of Kat's identity flowing into one. The ink's organic expansion mirrors how her roles all emanate from the same source.</p>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-header">
+      <div class="section-number">03</div>
+      <h3>Book — Crescent Lane</h3>
+      <span class="vibe">Atmospheric · Melancholic · Shanghai</span>
+    </div>
+    <div class="section-card-body">
+      <div class="specs-row">
+        <span class="spec-pill"><strong>Ratio:</strong> 16:9</span>
+        <span class="spec-pill"><strong>Duration:</strong> 10s loop</span>
+        <span class="spec-pill"><strong>Overlay:</strong> Dark 65%</span>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-nb">Nano Banana 2 — Image</div>
+        <div class="prompt-text">Rain-soaked cobblestone alleyway in old Shanghai at night, 1970s China, warm red paper lanterns hanging overhead reflecting in deep puddles on the ground, misty atmospheric fog rolling through the lane, a narrow hutong alley receding into darkness, golden and crimson reflections shimmering in wet stone, solitary and beautiful, cinematic film photography style, Kodak film grain, melancholic romanticism, no people visible</div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-sd">Sundance 2 — Motion</div>
+        <div class="prompt-text">Light rain drops falling and disturbing the reflections in puddles, lanterns swaying gently in a light breeze causing reflections to ripple, fog slowly drifting through the alley, deeply atmospheric and cinematic, the scene breathing quietly, slow motion rain, 24fps</div>
+      </div>
+      <p class="notes">Directly evokes the world of the novel Crescent Lane — Cultural Revolution China, the immigrant's secret past, atmospheric tension. The rain and reflections mirror the novel's themes of duality and hidden depths.</p>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-header">
+      <div class="section-number">04</div>
+      <h3>Blog — Reflections</h3>
+      <span class="vibe">Contemplative · Quiet · Intellectual</span>
+    </div>
+    <div class="section-card-body">
+      <div class="specs-row">
+        <span class="spec-pill"><strong>Ratio:</strong> 16:9</span>
+        <span class="spec-pill"><strong>Duration:</strong> 8s loop</span>
+        <span class="spec-pill"><strong>Overlay:</strong> Light 30% + gradient</span>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-nb">Nano Banana 2 — Image</div>
+        <div class="prompt-text">Extreme close-up macro of aged, cream-colored book pages slightly fanned open, warm afternoon window light raking across the paper texture revealing beautiful fine grain, soft focus depth of field, the edges of pages glowing warm gold, intimate and tactile, no text visible on pages, quiet library atmosphere, fine art photography, warm ivory and amber palette, ultra detailed paper texture</div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-sd">Sundance 2 — Motion</div>
+        <div class="prompt-text">A gentle breeze barely causing the fanned pages to lift and settle one by one, warm light shifting slowly as if clouds are passing outside the window, paper texture breathing in the light, the whole scene impossibly calm and peaceful, barely perceptible motion, perfect for looping</div>
+      </div>
+      <p class="notes">For the blog section the overlay is lighter so it reads warmer — blog cards sit on top with their own backgrounds.</p>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-header">
+      <div class="section-number">05</div>
+      <h3>Philanthropy — Nunya Academy & Community</h3>
+      <span class="vibe">Warm · Human · Hopeful</span>
+    </div>
+    <div class="section-card-body">
+      <div class="specs-row">
+        <span class="spec-pill"><strong>Ratio:</strong> 16:9</span>
+        <span class="spec-pill"><strong>Duration:</strong> 8s loop</span>
+        <span class="spec-pill"><strong>Overlay:</strong> Dark 50%</span>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-nb">Nano Banana 2 — Image</div>
+        <div class="prompt-text">Golden hour African landscape, lush tropical greenery backlit by a warm setting sun, tall trees with light filtering through leaves creating gorgeous dappled light patterns on the ground, peaceful and majestic, warm earth tones of ochre amber and deep green, no people, documentary photography style, Canon 5D film quality, deeply beautiful and hopeful, wide angle establishing shot</div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-sd">Sundance 2 — Motion</div>
+        <div class="prompt-text">Gentle breeze moving through the lush tree canopy, leaves shimmering and catching golden light, the ground light patterns shifting and dancing slowly, the sun's rays gently changing angle as if time is passing slowly, warm and alive, birds in the distance, peaceful ambient motion, 24fps cinematic</div>
+      </div>
+      <p class="notes">Evokes Ghana and the warmth of Kat's philanthropic work without being literal. The golden-hour light signals hope and transformation.</p>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-header">
+      <div class="section-number">06</div>
+      <h3>Music — Cello & Rock</h3>
+      <span class="vibe">Visceral · Intimate · Electric</span>
+    </div>
+    <div class="section-card-body">
+      <div class="specs-row">
+        <span class="spec-pill"><strong>Ratio:</strong> 16:9</span>
+        <span class="spec-pill"><strong>Duration:</strong> 8s loop</span>
+        <span class="spec-pill"><strong>Overlay:</strong> Dark 55%</span>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-nb">Nano Banana 2 — Image</div>
+        <div class="prompt-text">Ultra close-up macro of cello strings and horsehair bow in motion, rosin dust suspended in a warm amber stage spotlight, the rich amber varnish of the cello body visible in deep focus, the strings themselves slightly blurred from vibration, dramatic side lighting creating long shadows, concert hall darkness in the background with distant blurred golden lights, breathtaking tactile detail, fine art photography, warm brass and charcoal palette</div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-sd">Sundance 2 — Motion</div>
+        <div class="prompt-text">Bow drawing slowly and deliberately across the strings in slow motion, rosin dust particles exploding into the spotlight beam and floating in the air, strings vibrating with visible blur, the light on the cello body shimmering, deeply sensory and musical, ultra slow motion 120fps played at 24fps, intimate and powerful</div>
+      </div>
+      <p class="notes">For the music section, this creates an intimate and visceral backdrop that complements the actual performance photos displayed on top.</p>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-header">
+      <div class="section-number">07</div>
+      <h3>Contact — Let's Connect</h3>
+      <span class="vibe">Intimate · Warm · Inviting</span>
+    </div>
+    <div class="section-card-body">
+      <div class="specs-row">
+        <span class="spec-pill"><strong>Ratio:</strong> 16:9</span>
+        <span class="spec-pill"><strong>Duration:</strong> 8s loop</span>
+        <span class="spec-pill"><strong>Overlay:</strong> Dark 70%</span>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-nb">Nano Banana 2 — Image</div>
+        <div class="prompt-text">Abstract macro photograph of a single lit candle flame in complete darkness, warm golden amber light emanating outward with beautiful bokeh halos, the flame reflected on a dark polished surface below, intimate and singular, the surrounding darkness rich and velvety not harsh, an aura of warmth and approachability, fine art photography, Rembrandt-like chiaroscuro, warm brass gold palette, no people</div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label label-sd">Sundance 2 — Motion</div>
+        <div class="prompt-text">The candle flame flickering gently and organically in a barely perceptible air current, the surrounding light and bokeh halos pulsing softly in response, the reflection on the surface below shifting with the flame, deeply calm and warm, the darkness alive with soft moving light, perfect seamless loop</div>
+      </div>
+      <p class="notes">A single flame — intimate, warm, welcoming. Creates a sense of one-on-one connection perfectly suited for the contact form.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  K. TingTing Gray Website Redesign — Video Generation Guide &nbsp;·&nbsp; Attach your generated videos to swap them into the redesign
+</footer>
+
+</body>
+</html>

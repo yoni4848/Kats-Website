@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+(function() {
+  var t = localStorage.getItem('katTheme') || 'B';
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Power of Shamelessness | K. TingTing Gray</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: #FAF8F4; color: #221C16; font-family: 'Space Grotesk', sans-serif; line-height: 1.7; }
+img { display: block; max-width: 100%; }
+a { text-decoration: none; }
+.nav { position: sticky; top: 0; z-index: 100; background: rgba(250,248,244,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid #E5DDD3; padding: 1rem 3rem; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo img { height: 32px; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: #7A6E64; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; transition: color 0.2s; }
+.nav-links a:hover { color: #8A6E3A; }
+.article-wrap { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+.back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: #8A6E3A; font-weight: 600; margin-bottom: 3rem; transition: color 0.2s; }
+.back-link:hover { color: #6A5228; }
+.back-link svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.article-header { margin-bottom: 3rem; }
+.article-illustration { margin-bottom: 2rem; overflow: hidden; }
+.article-illustration img { width: 100%; border: 1px solid #E5DDD3; }
+.article-date { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: #8A6E3A; font-weight: 600; display: block; margin-bottom: 1rem; }
+.article-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.1; color: #221C16; margin-bottom: 1rem; }
+.article-rule { width: 44px; height: 2px; background: #C4A872; }
+.article-body { margin-top: 2.5rem; }
+.article-body p { font-size: 1.05rem; line-height: 1.9; color: #3A2E24; margin-bottom: 1.5rem; }
+.article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; color: #221C16; margin: 2.5rem 0 1rem; }
+.article-body em { font-style: italic; color: #8A6E3A; }
+.post-nav { display: flex; justify-content: space-between; gap: 2rem; margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid #E5DDD3; }
+.post-nav-link { display: flex; flex-direction: column; gap: 0.4rem; max-width: 45%; }
+.post-nav-link span:first-child { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9A8E84; font-weight: 600; }
+.post-nav-link span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #221C16; line-height: 1.3; transition: color 0.2s; }
+.post-nav-link:hover span:last-child { color: #8A6E3A; }
+.post-nav-link--next { text-align: right; margin-left: auto; }
+.footer { background: #221C16; padding: 3rem; }
+.footer-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.5; }
+.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-links a { color: rgba(250,248,244,0.38); font-size: 0.78rem; transition: color 0.2s; }
+.footer-links a:hover { color: #C4A872; }
+.footer-copy { max-width: 720px; margin: 1.5rem auto 0; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; font-size: 0.72rem; color: rgba(250,248,244,0.22); text-align: center; }
+@media (max-width: 600px) {
+  .nav { padding: 1rem 1.25rem; } .nav-links { display: none; }
+  .article-wrap { padding: 2.5rem 1.25rem 4rem; }
+  .post-nav { flex-direction: column; }
+  .post-nav-link { max-width: 100%; }
+  .post-nav-link--next { text-align: left; margin-left: 0; }
+}
+
+<style id="blog-theme-styles">
+/* ── THEME DEFAULTS (Theme B — Ivory Editorial is the base) ── */
+:root {
+  --bg: #FAF8F4; --bg2: #F3EFE8; --border: #E5DDD3;
+  --text: #221C16; --text2: #7A6E64;
+  --accent: #8A6E3A; --accent-lt: #C4A872;
+  --heading-font: 'Playfair Display', serif;
+  --body-font: 'Lato', sans-serif;
+}
+body { background: var(--bg); color: var(--text); font-family: var(--body-font); }
+.nav { background: rgba(250,248,244,0.96); border-color: var(--border); }
+.nav-links a { color: var(--text2); }
+.nav-links a:hover { color: var(--accent); }
+.back-link { color: var(--accent); }
+.article-date { color: var(--accent); }
+.article-title { font-family: var(--heading-font); color: var(--text); }
+.article-rule { background: var(--accent-lt); }
+.article-body p { color: #3A2E24; }
+.article-body h2 { font-family: var(--heading-font); color: var(--text); }
+.article-body em { color: var(--accent); }
+.post-nav { border-color: var(--border); }
+.post-nav-link span:last-child { color: var(--text); }
+.post-nav-link:hover span:last-child { color: var(--accent); }
+.footer { background: #221C16; }
+.footer-links a:hover { color: var(--accent-lt); }
+
+/* ── THEME A — Noir Luxe ── */
+[data-theme="A"] { --bg:#110E0A; --bg2:#1A1510; --border:rgba(212,196,160,0.2); --text:#F5F0EA; --text2:rgba(245,240,234,0.55); --accent:#9A7D45; --accent-lt:#D4C4A0; --heading-font:'Cormorant Garamond',serif; --body-font:'Space Grotesk',sans-serif; }
+[data-theme="A"] body { background: var(--bg); color: var(--text); font-family: var(--body-font); }
+[data-theme="A"] .nav { background: rgba(17,14,10,0.96); border-color: var(--border); }
+[data-theme="A"] .nav-logo img { filter: brightness(0) invert(1); opacity: 0.85; }
+[data-theme="A"] .article-illustration img { border-color: var(--border); filter: sepia(15%) brightness(0.85); }
+[data-theme="A"] .article-body p { color: rgba(245,240,234,0.75); }
+[data-theme="A"] .post-nav-link span:first-child { color: rgba(245,240,234,0.4); }
+[data-theme="A"] .footer { background: #080604; border-top: 1px solid var(--border); }
+[data-theme="A"] .footer-logo img { filter: brightness(0) invert(1); opacity: 0.45; }
+
+/* ── THEME B — Ivory Editorial (default, already styled above) ── */
+[data-theme="B"] .nav-logo img { filter: none; }
+
+/* ── THEME C — Bold Typographic ── */
+[data-theme="C"] { --bg:#0A0A0A; --bg2:#111; --border:#2A2A2A; --text:#F0EDE8; --text2:rgba(240,237,232,0.5); --accent:#E8A830; --accent-lt:#F0C870; --heading-font:'Bebas Neue',sans-serif; --body-font:'Inter',sans-serif; }
+[data-theme="C"] body { background: var(--bg); color: var(--text); font-family: var(--body-font); }
+[data-theme="C"] .nav { background: rgba(10,10,10,0.96); border-color: var(--border); }
+[data-theme="C"] .nav-logo img { filter: brightness(0) invert(1); opacity: 0.8; }
+[data-theme="C"] .article-illustration img { border-color: var(--border); filter: grayscale(40%) brightness(0.8); }
+[data-theme="C"] .article-title { font-family: var(--heading-font); font-size: clamp(2.5rem,6vw,4rem); letter-spacing: 0.02em; line-height: 0.95; }
+[data-theme="C"] .article-body p { color: rgba(240,237,232,0.72); font-weight: 300; }
+[data-theme="C"] .article-body h2 { font-family: var(--heading-font); font-size: 2rem; letter-spacing: 0.03em; line-height: 1; }
+[data-theme="C"] .post-nav-link span:first-child { color: rgba(240,237,232,0.35); }
+[data-theme="C"] .footer { background: #050505; border-top: 1px solid var(--border); }
+[data-theme="C"] .footer-logo img { filter: brightness(0) invert(1); opacity: 0.4; }
+
+/* ── THEME D — Warm Salon ── */
+[data-theme="D"] { --bg:#F7F0E8; --bg2:#EEE4D6; --border:#DDD0BE; --text:#2A1F14; --text2:#7A6350; --accent:#C4683A; --accent-lt:#E8A880; --heading-font:'DM Serif Display',serif; --body-font:'DM Sans',sans-serif; }
+[data-theme="D"] body { background: var(--bg); color: var(--text); font-family: var(--body-font); }
+[data-theme="D"] .nav { background: rgba(247,240,232,0.96); border-color: var(--border); }
+[data-theme="D"] .article-body p { color: #3D2A1C; }
+[data-theme="D"] .post-nav-link span:first-child { color: #9A8070; }
+[data-theme="D"] .footer { background: #2A1F14; }
+[data-theme="D"] .footer-logo img { filter: brightness(0) invert(1); opacity: 0.5; }
+</style>
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../Design Options.html" class="nav-logo"><img src="../assets/logo.png" alt="K. TingTing Gray"></a>
+  <ul class="nav-links">
+    <li><a href="../Design Options.html#about">About</a></li>
+    <li><a href="../Design Options.html#book">Book</a></li>
+    <li><a href="../Design Options.html#blog">Blog</a></li>
+    <li><a href="../Design Options.html#philanthropy">Philanthropy</a></li>
+    <li><a href="../Design Options.html#music">Music</a></li>
+    <li><a href="../Design Options.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="article-wrap">
+  <a href="../Design Options.html#blog" class="back-link">
+    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Blog
+  </a>
+
+  <article>
+    <header class="article-header">
+      <div class="article-illustration">
+        <img src="../assets/blog-shameless.png" alt="Illustration of people jumping with joy and freedom">
+      </div>
+      <span class="article-date">September 24, 2024</span>
+      <h1 class="article-title">The Power of Shamelessness: Embrace Your True Self</h1>
+      <div class="article-rule"></div>
+    </header>
+
+    <div class="article-body">
+      <p>In a world often defined by social norms and appearances, I find self-liberation in shamelessness. This is not recklessness or disregard for others but a profound embrace of my whole self — warts and all — unabashedly. Yes, the impending humiliation makes me gulp. Despite it, I go forth, knowing the reward at the other end.</p>
+
+      <h2>The Fear and the Freedom</h2>
+      <p>Stepping into the unfamiliar is daunting. Whether it's a new philanthropic project, a more advanced level of dance, or learning a new language, each venture exposes my weaknesses and ignorance. These moments are riddled with fear and anticipation. The fear of being judged, of not meeting expectations, and of failing is omnipresent. Yet, within this fear lies an incredible sense of freedom.</p>
+      <p>Shamelessness, to me, means shedding the societal expectations that bind us. It means standing up, not only in my triumphs but in my most vulnerable moments, saying, "This is me." It's about owning my story, every messy chapter of it, without apology.</p>
+
+      <h2>The First Steps into Vulnerability</h2>
+      <p>One of my earliest memories of embracing shamelessness was during a philanthropic project in Ghana. I was eager yet utterly unprepared for the cultural and logistical challenges that awaited me. I remember standing in front of a group of local women, fumbling through my words, feeling the heat of embarrassment rise in my cheeks.</p>
+      <p>But something remarkable happened. Instead of ridicule, I was met with patience and kindness. The women saw my genuine intent and offered their support. They taught me, not only about their culture and needs but about the power of community and mutual respect. This experience was transformative. It taught me that vulnerability is not a weakness but a bridge to deeper human connections.</p>
+
+      <h2>Dancing with Imperfection</h2>
+      <p>My journey as a dancer has been another profound lesson in shamelessness. Dance, for me, is a language of the soul. Yet, advancing to higher levels of performance has meant exposing my imperfections on stage, in front of an audience that expects grace and precision.</p>
+      <p>During a particularly challenging rehearsal for a performance, I stumbled, my misstep glaringly obvious. The room fell silent, and I felt a wave of shame wash over me. But then, something shifted. I got up, laughed at myself, and continued. My fellow dancers didn't judge me; instead, they joined in the laughter, turning a moment of potential humiliation into one of camaraderie and learning.</p>
+
+      <h2>The Power of Shamelessness in Philanthropy</h2>
+      <p>In my work with the KAVAH Fund, shamelessness has been a guiding principle. Philanthropy often requires navigating uncharted waters and taking risks. There have been projects that didn't turn out as expected and initiatives that faced criticism. However, approaching each endeavor with an open heart and a willingness to learn has led to some of the most rewarding outcomes.</p>
+      <p>For instance, our partnership with The Gray Center at the University of Chicago was initially met with skepticism. The interdisciplinary project involving visual artists and historians to research forced migrations was ambitious and complex. Yet, by embracing the potential for failure and openly addressing our uncertainties, we fostered an environment of innovation and collaboration.</p>
+
+      <h2>Embracing Your Whole Self</h2>
+      <p>Liberation through shamelessness is a continuous journey. It's about peeling back the layers of pretense and fear, allowing our true selves to shine through. Each time I venture into the unfamiliar, I receive help from those who know more, I get a bit more educated, and I grow.</p>
+      <p>The path to self-liberation is not without its challenges. The fear of humiliation and failure is real, but the rewards on the other side are profound. By embracing my whole self — warts and all — I've discovered a strength and freedom that is both empowering and transformational.</p>
+      <p>So, I encourage you to step into the unfamiliar, to embrace your vulnerabilities, and to find liberation in shamelessness. It is through this journey that we truly connect with others, learn, and grow into our most authentic selves.</p>
+    </div>
+
+    <nav class="post-nav">
+      <a href="the-dumbest-person-in-the-room.html" class="post-nav-link">
+        <span>← Previous</span>
+        <span>The Joy of Being the Dumbest Person in the Room</span>
+      </a>
+    </nav>
+  </article>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="../assets/logo.png" alt="K. TingTing Gray"></div>
+    <div class="footer-links">
+      <a href="mailto:kat@ktingtinggray.com">kat@ktingtinggray.com</a>
+      <a href="https://www.facebook.com/profile.php?id=61554885916743" target="_blank">Facebook</a>
+      <a href="https://www.linkedin.com/in/katrine-gray-263823281/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+  <p class="footer-copy">&copy; 2025 K. TingTing Gray. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
