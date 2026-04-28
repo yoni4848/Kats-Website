@@ -14,8 +14,8 @@
    BASE RESET
 ════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { overflow-x: hidden; }
+html { scroll-behavior: smooth; max-width: 100%; overflow-x: hidden; }
+body { overflow-x: hidden; width: 100%; max-width: 100%; }
 img { display: block; max-width: 100%; }
 a { text-decoration: none; }
 button { cursor: pointer; }
@@ -62,6 +62,8 @@ button { cursor: pointer; }
 ════════════════════════════════════════ */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
 .container-narrow { max-width: 700px; margin: 0 auto; padding: 0 3rem; }
+.site-nav { width: 100%; max-width: 100%; overflow: hidden; }
+img { max-width: 100%; height: auto; }
 
 /* fade-up */
 .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); }
@@ -693,29 +695,115 @@ button { cursor: pointer; }
 [data-theme="D"] .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.75rem; text-align: center; font-size: 0.75rem; color: rgba(247,240,232,0.22); }
 
 /* ── Hero sub-layout defaults (JS controls visibility) ── */
-.hero-centered   { position: relative; z-index: 1; max-width: 700px; text-align: center; }
+.hero-centered   { position: relative; z-index: 1; max-width: 700px; text-align: center; padding: 0 1.5rem; }
 .hero-left       { display: none; }
 .hero-right      { display: none; }
 .hero-content-c  { display: none; }
 .hero-portrait-c { display: none; }
 
+/* ── Mobile hamburger button ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 200;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  transition: all 0.3s;
+}
+
+/* ── Mobile menu overlay ── */
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+.mobile-nav-overlay.open { display: flex; }
+.mobile-nav-overlay a {
+  font-size: 1.8rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.mobile-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Theme-aware mobile menu */
+[data-theme="A"] .mobile-nav-overlay { background: rgba(17,14,10,0.97); }
+[data-theme="A"] .mobile-nav-overlay a { color: #D4C4A0; font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+[data-theme="A"] .mobile-nav-overlay a:hover { color: #fff; }
+[data-theme="A"] .mobile-close-btn { color: rgba(245,240,234,0.5); }
+[data-theme="A"] .nav-hamburger { color: #D4C4A0; }
+[data-theme="B"] .mobile-nav-overlay { background: rgba(250,248,244,0.98); }
+[data-theme="B"] .mobile-nav-overlay a { color: #221C16; font-family: 'Playfair Display', serif; }
+[data-theme="B"] .mobile-nav-overlay a:hover { color: #8A6E3A; }
+[data-theme="B"] .mobile-close-btn { color: #7A6E64; }
+[data-theme="B"] .nav-hamburger { color: #221C16; }
+[data-theme="C"] .mobile-nav-overlay { background: rgba(10,10,10,0.98); }
+[data-theme="C"] .mobile-nav-overlay a { color: #F0EDE8; font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.06em; }
+[data-theme="C"] .mobile-nav-overlay a:hover { color: #E8A830; }
+[data-theme="C"] .mobile-close-btn { color: rgba(240,237,232,0.4); }
+[data-theme="C"] .nav-hamburger { color: #F0EDE8; }
+[data-theme="D"] .mobile-nav-overlay { background: rgba(247,240,232,0.98); }
+[data-theme="D"] .mobile-nav-overlay a { color: #2A1F14; font-family: 'DM Serif Display', serif; }
+[data-theme="D"] .mobile-nav-overlay a:hover { color: #C4683A; }
+[data-theme="D"] .mobile-close-btn { color: #7A6350; }
+[data-theme="D"] .nav-hamburger { color: #2A1F14; }
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   [data-theme] .site-nav { padding: 1rem 1.5rem !important; }
-  [data-theme] .nav-links { display: none; }
+  [data-theme] .nav-links { display: none !important; }
+  [data-theme] .nav-hamburger { display: flex !important; }
   [data-theme] .roles-grid { grid-template-columns: repeat(2,1fr) !important; }
   [data-theme] .blog-grid { grid-template-columns: 1fr !important; }
   [data-theme] .book-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  [data-theme] .book-cover { order: -1; }
   [data-theme] .philanthropy-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
   [data-theme] .music-grid { grid-template-columns: 1fr !important; }
   [data-theme] .footer-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-  [data-theme] .container, [data-theme] .container-narrow { padding: 0 1.5rem !important; }
-  [data-theme="B"] .hero { grid-template-columns: 1fr !important; }
-  [data-theme="B"] .hero-right { display: none; }
-  [data-theme="C"] .hero { padding: 6rem 2rem 4rem !important; }
-
+  [data-theme] .container, [data-theme] .container-narrow { padding: 0 1.25rem !important; }
+  [data-theme] section { padding: 4rem 0 !important; }
+  [data-theme] .hero { min-height: 100svh; }
+  [data-theme="A"] .hero { padding: 7rem 1.5rem 5rem !important; }
+  [data-theme="A"] .hero-portrait img { width: 130px !important; height: 130px !important; }
+  [data-theme="B"] .hero { display: flex !important; flex-direction: column !important; padding: 6rem 1.5rem 4rem !important; text-align: center; }
+  [data-theme="B"] .hero-left { padding: 0 !important; border-right: none !important; align-items: center; }
+  [data-theme="B"] .hero-right { display: none !important; }
+  [data-theme="C"] .hero { padding: 5rem 1.5rem 3rem !important; }
+  [data-theme="C"] .hero::before { font-size: 45vw !important; right: -0.25rem !important; }
+  [data-theme="C"] .hero-portrait-c { width: 100% !important; opacity: 0.3 !important; }
+  [data-theme="C"] .hero h1 { font-size: clamp(3.5rem,12vw,6rem) !important; }
+  [data-theme="D"] .hero { padding: 7rem 1.5rem 5rem !important; }
+  [data-theme="D"] .hero-portrait img { width: 150px !important; height: 150px !important; }
   [data-theme="C"] .book-grid { grid-template-columns: 1fr !important; }
   [data-theme="C"] .philanthropy-grid { grid-template-columns: 1fr !important; }
+  .variant-bar { bottom: 1rem; padding: 5px; }
+  .variant-btn { padding: 0.4rem 0.9rem !important; font-size: 0.68rem !important; }
+}
+@media (max-width: 560px) {
+  [data-theme] .roles-grid { grid-template-columns: 1fr !important; }
+  [data-theme] .hero h1 { font-size: clamp(2.5rem,9vw,3.5rem) !important; }
 }
 </style>
 </head>
@@ -727,6 +815,17 @@ button { cursor: pointer; }
   <button class="variant-btn" data-theme-target="B">2</button>
   <button class="variant-btn" data-theme-target="C">3</button>
   <button class="variant-btn" data-theme-target="D">4</button>
+</div>
+
+<!-- Mobile nav overlay -->
+<div class="mobile-nav-overlay" id="mobile-overlay">
+  <button class="mobile-close-btn" id="mobile-close">&#x2715;</button>
+  <a href="#about">About</a>
+  <a href="#book">Book</a>
+  <a href="#blog">Blog</a>
+  <a href="#philanthropy">Philanthropy</a>
+  <a href="#music">Music</a>
+  <a href="#contact">Contact</a>
 </div>
 
 <!-- ════════ NAV (shared) ════════ -->
@@ -742,6 +841,9 @@ button { cursor: pointer; }
     <li><a href="#music">Music</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <main>
@@ -995,7 +1097,7 @@ button { cursor: pointer; }
     </div>
     <div class="footer-col">
       <h5>Connect</h5>
-      <a href="mailto:kat@ktingtinggray.com">kat@ktingtinggray.com</a>
+      <a href="/cdn-cgi/l/email-protection#cda6acb98da6b9a4a3aab9a4a3aaaabfacb4e3aea2a0"><span class="__cf_email__" data-cfemail="6b000a1f2b001f02050c1f02050c0c190a1245080406">[email&#160;protected]</span></a>
       <a href="https://www.facebook.com/profile.php?id=61554885916743" target="_blank">Facebook</a>
       <a href="https://www.linkedin.com/in/katrine-gray-263823281/" target="_blank">LinkedIn</a>
     </div>
@@ -1005,7 +1107,7 @@ button { cursor: pointer; }
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── Theme switcher ──
 const html = document.documentElement;
 const btns = document.querySelectorAll('.variant-btn');
@@ -1042,6 +1144,15 @@ const nav = document.getElementById('main-nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
+
+// ── Mobile nav ──
+const hamburger = document.getElementById('hamburger');
+const overlay   = document.getElementById('mobile-overlay');
+const mclose    = document.getElementById('mobile-close');
+function closeMobile() { overlay.classList.remove('open'); }
+hamburger.addEventListener('click', () => overlay.classList.add('open'));
+mclose.addEventListener('click', closeMobile);
+overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobile));
 
 // ── Scroll fade-up ──
 function observeFades() {
