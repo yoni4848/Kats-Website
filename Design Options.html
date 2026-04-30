@@ -106,6 +106,8 @@ img { max-width: 100%; height: auto; }
   display: flex; align-items: center; justify-content: space-between;
   transition: background 0.4s, padding 0.3s, border-color 0.4s;
   border-bottom: 1px solid transparent;
+  overflow: hidden;
+  width: 100%;
 }
 [data-theme="A"] .site-nav.scrolled {
   background: rgba(17,14,10,0.9);
@@ -316,6 +318,8 @@ img { max-width: 100%; height: auto; }
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
   transition: padding 0.3s;
+  overflow: hidden;
+  width: 100%;
 }
 [data-theme="B"] .site-nav.scrolled { padding: 0.85rem 3rem; }
 [data-theme="B"] .nav-logo img { height: 32px; }
@@ -450,6 +454,8 @@ img { max-width: 100%; height: auto; }
   display: flex; align-items: center; justify-content: space-between;
   transition: background 0.3s, padding 0.3s, border-color 0.3s;
   border-bottom: 1px solid transparent;
+  overflow: hidden;
+  width: 100%;
 }
 [data-theme="C"] .site-nav.scrolled { background: rgba(10,10,10,0.95); border-color: var(--border); padding: 0.9rem 3rem; }
 [data-theme="C"] .nav-logo img { height: 34px; filter: brightness(0) invert(1); opacity: 0.8; }
@@ -589,6 +595,8 @@ img { max-width: 100%; height: auto; }
   display: flex; align-items: center; justify-content: space-between;
   transition: background 0.4s, padding 0.3s, border-color 0.4s;
   border-bottom: 1px solid transparent;
+  overflow: hidden;
+  width: 100%;
 }
 [data-theme="D"] .site-nav.scrolled { background: rgba(247,240,232,0.95); backdrop-filter: blur(8px); padding: 0.85rem 3rem; border-color: var(--border); }
 [data-theme="D"] .nav-logo img { height: 34px; }
@@ -770,40 +778,112 @@ img { max-width: 100%; height: auto; }
 [data-theme="D"] .mobile-close-btn { color: #7A6350; }
 [data-theme="D"] .nav-hamburger { color: #2A1F14; }
 
-/* ── Responsive ── */
+/* ══════════════════════════════════════
+   MOBILE POLISH — tablet + phone
+══════════════════════════════════════ */
 @media (max-width: 900px) {
-  [data-theme] .site-nav { padding: 1rem 1.5rem !important; }
-  [data-theme] .nav-links { display: none !important; }
-  [data-theme] .nav-hamburger { display: flex !important; }
-  [data-theme] .roles-grid { grid-template-columns: repeat(2,1fr) !important; }
-  [data-theme] .blog-grid { grid-template-columns: 1fr !important; }
-  [data-theme] .book-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
-  [data-theme] .book-cover { order: -1; }
-  [data-theme] .philanthropy-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
-  [data-theme] .music-grid { grid-template-columns: 1fr !important; }
-  [data-theme] .footer-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-  [data-theme] .container, [data-theme] .container-narrow { padding: 0 1.25rem !important; }
+
+  /* ── Prevent ALL overflow ── */
+  html, body { overflow-x: hidden !important; max-width: 100% !important; }
+  [data-theme] .hero { overflow: hidden !important; }
+
+  /* ── Nav ── */
+  [data-theme] .site-nav { padding: 1rem 1.25rem !important; overflow: hidden !important; }
+  [data-theme] .site-nav .nav-links { display: none !important; visibility: hidden !important; max-width: 0 !important; overflow: hidden !important; }
+  [data-theme] .nav-hamburger { display: flex !important; flex-shrink: 0 !important; }
+
+  /* ── Sections ── */
   [data-theme] section { padding: 4rem 0 !important; }
-  [data-theme] .hero { min-height: 100svh; }
-  [data-theme="A"] .hero { padding: 7rem 1.5rem 5rem !important; }
-  [data-theme="A"] .hero-portrait img { width: 130px !important; height: 130px !important; }
-  [data-theme="B"] .hero { display: flex !important; flex-direction: column !important; padding: 6rem 1.5rem 4rem !important; text-align: center; }
-  [data-theme="B"] .hero-left { padding: 0 !important; border-right: none !important; align-items: center; }
-  [data-theme="B"] .hero-right { display: none !important; }
-  [data-theme="C"] .hero { padding: 5rem 1.5rem 3rem !important; }
-  [data-theme="C"] .hero::before { font-size: 45vw !important; right: -0.25rem !important; }
-  [data-theme="C"] .hero-portrait-c { width: 100% !important; opacity: 0.3 !important; }
-  [data-theme="C"] .hero h1 { font-size: clamp(3.5rem,12vw,6rem) !important; }
-  [data-theme="D"] .hero { padding: 7rem 1.5rem 5rem !important; }
-  [data-theme="D"] .hero-portrait img { width: 150px !important; height: 150px !important; }
-  [data-theme="C"] .book-grid { grid-template-columns: 1fr !important; }
+  [data-theme] .container,
+  [data-theme] .container-narrow { padding: 0 1.25rem !important; }
+
+  /* ── Grids → single column ── */
+  [data-theme] .roles-grid { grid-template-columns: repeat(2,1fr) !important; }
+  [data-theme] .blog-grid  { grid-template-columns: 1fr !important; }
+  [data-theme] .music-grid { grid-template-columns: 1fr !important; }
+  [data-theme] .book-grid  { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+  [data-theme] .philanthropy-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+  [data-theme] .footer-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  [data-theme="C"] .book-grid,
   [data-theme="C"] .philanthropy-grid { grid-template-columns: 1fr !important; }
-  .variant-bar { bottom: 1rem; padding: 5px; }
-  .variant-btn { padding: 0.4rem 0.9rem !important; font-size: 0.68rem !important; }
+
+  /* ── Book: cover on top ── */
+  [data-theme] .book-cover { order: -1 !important; }
+  [data-theme] .book-cover img,
+  [data-theme] .book-info  { max-width: 100% !important; width: 100% !important; }
+  [data-theme] .book-cover img { max-width: 260px !important; margin: 0 auto !important; }
+
+  /* ── Book info text + btn centered on mobile ── */
+  [data-theme] .book-info { text-align: center !important; }
+  [data-theme] .book-info .section-rule { margin: 0 auto 2rem !important; }
+  [data-theme] .book-info .btn,
+  [data-theme] .book-info .btn-primary { display: block !important; width: 100% !important; text-align: center !important; box-sizing: border-box !important; }
+  [data-theme="C"] .book-info { padding: 2.5rem 1.25rem !important; }
+  [data-theme="C"] .book-cover { border-right: none !important; padding: 2rem 1.25rem !important; }
+
+  /* ── Philanthropy: img full width ── */
+  [data-theme] .philanthropy-img img { width: 100% !important; }
+  [data-theme] .philanthropy-img::after { display: none !important; }
+
+  /* ── Footer: centered ── */
+  [data-theme] .site-footer { padding: 3rem 1.25rem 2rem !important; }
+  [data-theme] .footer-brand,
+  [data-theme] .footer-col { text-align: center !important; }
+  [data-theme] .footer-brand img { margin: 0 auto 1rem !important; }
+  [data-theme] .footer-col a { display: block !important; }
+  [data-theme] .footer-bottom { text-align: center !important; }
+  [data-theme="C"] .philanthropy-text { padding: 2.5rem 1.25rem !important; }
+
+  /* ── Scroll cue: hide on themes where it overlaps ── */
+  [data-theme="A"] .scroll-cue,
+  [data-theme="D"] .scroll-cue { display: none !important; }
+
+  /* ── HERO A & D: centered, no overflow ── */
+  [data-theme="A"] .hero { padding: 6rem 1.25rem 5rem !important; }
+  [data-theme="A"] .hero-portrait img { width: 120px !important; height: 120px !important; }
+  [data-theme="D"] .hero { padding: 6rem 1.25rem 5rem !important; }
+  [data-theme="D"] .hero-portrait img { width: 140px !important; height: 140px !important; }
+
+  /* ── HERO B: stack vertically ── */
+  [data-theme="B"] .hero { display: flex !important; flex-direction: column !important; padding: 5rem 1.25rem 4rem !important; text-align: center !important; }
+  [data-theme="B"] .hero-left { padding: 0 !important; border-right: none !important; align-items: center !important; }
+  [data-theme="B"] .hero-right { display: none !important; }
+  [data-theme="B"] .hero-rule { margin: 1.25rem auto !important; }
+
+  /* ── HERO C: clip overflow sources ── */
+  [data-theme="C"] .hero { padding: 5rem 1.25rem 4rem !important; overflow: hidden !important; }
+  [data-theme="C"] .hero::before { font-size: 38vw !important; right: 0 !important; bottom: -0.5rem !important; pointer-events: none !important; }
+  [data-theme="C"] .hero-portrait-c { width: 50% !important; opacity: 0.2 !important; }
+  [data-theme="C"] .hero h1 { font-size: clamp(2.8rem,10vw,4.5rem) !important; }
+  [data-theme="C"] .hero-content-c { padding-bottom: 2rem !important; max-width: 100% !important; }
+  [data-theme="C"] .scroll-cue { bottom: 1.5rem !important; right: 1.25rem !important; }
+
+  /* ── Role cards ── */
+  [data-theme] .role-card { padding: 1.5rem 1.25rem !important; }
+
+  /* ── Blog cards ── */
+  [data-theme] .blog-card-body { padding: 1.25rem !important; }
+
+  /* ── Music captions always visible on mobile ── */
+  [data-theme] .music-caption { transform: none !important; }
+
+  /* ── Contact form ── */
+  [data-theme] .form-submit { width: 100% !important; }
+
+  /* ── Variant bar ── */
+  .variant-bar { bottom: 1rem; gap: 0; }
+  .variant-btn { padding: 0.4rem 1rem !important; font-size: 0.72rem !important; }
 }
-@media (max-width: 560px) {
+
+/* ── Small phones ── */
+@media (max-width: 480px) {
   [data-theme] .roles-grid { grid-template-columns: 1fr !important; }
-  [data-theme] .hero h1 { font-size: clamp(2.5rem,9vw,3.5rem) !important; }
+  [data-theme] .section-title { font-size: clamp(1.8rem, 8vw, 2.5rem) !important; }
+  [data-theme] .hero h1 { font-size: clamp(2.2rem, 9vw, 3rem) !important; }
+  [data-theme="C"] .hero h1 { font-size: clamp(2.8rem, 11vw, 4rem) !important; }
+  [data-theme] .hero-roles { font-size: 0.82rem !important; }
+  [data-theme] .book-desc { font-size: 0.88rem !important; }
+  [data-theme] .footer-links { justify-content: center !important; }
 }
 </style>
 </head>
@@ -1097,7 +1177,7 @@ img { max-width: 100%; height: auto; }
     </div>
     <div class="footer-col">
       <h5>Connect</h5>
-      <a href="/cdn-cgi/l/email-protection#cda6acb98da6b9a4a3aab9a4a3aaaabfacb4e3aea2a0"><span class="__cf_email__" data-cfemail="6b000a1f2b001f02050c1f02050c0c190a1245080406">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#2e454f5a6e455a4740495a474049495c4f57004d4143"><span class="__cf_email__" data-cfemail="5e353f2a1e352a3730392a373039392c3f27703d3133">[email&#160;protected]</span></a>
       <a href="https://www.facebook.com/profile.php?id=61554885916743" target="_blank">Facebook</a>
       <a href="https://www.linkedin.com/in/katrine-gray-263823281/" target="_blank">LinkedIn</a>
     </div>
