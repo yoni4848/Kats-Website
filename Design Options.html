@@ -844,16 +844,32 @@ img { max-width: 100%; height: auto; }
   [data-theme="D"] .hero { padding: 6rem 1.25rem 5rem !important; }
   [data-theme="D"] .hero-portrait img { width: 140px !important; height: 140px !important; }
 
-  /* ── HERO B: stack vertically ── */
+  /* ── HERO B ── */
   [data-theme="B"] .hero { display: flex !important; flex-direction: column !important; padding: 5rem 1.25rem 4rem !important; text-align: center !important; }
   [data-theme="B"] .hero-left { padding: 0 !important; border-right: none !important; align-items: center !important; }
   [data-theme="B"] .hero-right { display: none !important; }
   [data-theme="B"] .hero-rule { margin: 1.25rem auto !important; }
+  /* Show portrait above text for B on mobile */
+  [data-theme="B"] .hero-left::before {
+    content: '';
+    display: block;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-image: url('assets/kat-portrait.png');
+    background-size: cover;
+    background-position: center top;
+    margin: 0 auto 2rem;
+    border: 1px solid #E5DDD3;
+    filter: sepia(8%) saturate(0.9);
+  }
 
   /* ── HERO C: clip overflow sources ── */
   [data-theme="C"] .hero { padding: 5rem 1.25rem 4rem !important; overflow: hidden !important; }
   [data-theme="C"] .hero::before { font-size: 38vw !important; right: 0 !important; bottom: -0.5rem !important; pointer-events: none !important; }
-  [data-theme="C"] .hero-portrait-c { width: 50% !important; opacity: 0.2 !important; }
+  [data-theme="C"] .hero-portrait-c { width: 55% !important; opacity: 0.7 !important; }
+  [data-theme="C"] .hero-portrait-c img { filter: grayscale(60%) contrast(1.1) brightness(0.8) !important; }
+  [data-theme="C"] .hero-portrait-c::after { background: linear-gradient(to right, var(--bg) 0%, transparent 55%) !important; }
   [data-theme="C"] .hero h1 { font-size: clamp(2.8rem,10vw,4.5rem) !important; }
   [data-theme="C"] .hero-content-c { padding-bottom: 2rem !important; max-width: 100% !important; }
   [data-theme="C"] .scroll-cue { bottom: 1.5rem !important; right: 1.25rem !important; }
@@ -1177,7 +1193,7 @@ img { max-width: 100%; height: auto; }
     </div>
     <div class="footer-col">
       <h5>Connect</h5>
-      <a href="/cdn-cgi/l/email-protection#2e454f5a6e455a4740495a474049495c4f57004d4143"><span class="__cf_email__" data-cfemail="5e353f2a1e352a3730392a373039392c3f27703d3133">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#1e757f6a5e756a7770796a777079796c7f67307d7173"><span class="__cf_email__" data-cfemail="c1aaa0b581aab5a8afa6b5a8afa6a6b3a0b8efa2aeac">[email&#160;protected]</span></a>
       <a href="https://www.facebook.com/profile.php?id=61554885916743" target="_blank">Facebook</a>
       <a href="https://www.linkedin.com/in/katrine-gray-263823281/" target="_blank">LinkedIn</a>
     </div>
